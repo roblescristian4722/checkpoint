@@ -127,7 +127,6 @@ void Gym::guardar()
     archivo.seekg((this->usrs.back().id - 1) * sizeof(Usuario));
     archivo.write((char*)&this->usrs.back(), sizeof(Usuario));
     archivo.close();
-
 }
 
 bool Gym::recuperar()
@@ -160,7 +159,7 @@ bool Gym::recuperar()
             recup = true;
         }
         else
-            this->idDis.push_back(usrTmp.id);
+            this->idDis.push_back(archivo.tellg() / sizeof(Usuario));
     }
     this->ids = this->usrs.back().id + 1;
     return recup;
